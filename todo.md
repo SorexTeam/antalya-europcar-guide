@@ -173,7 +173,7 @@
 - [x] Terminal 2 fotoğrafını marker ve bilgi kartına bağla.
 - [x] Terminal 1 fotoğrafını kalıcı web varlığına yükle.
 - [x] Terminal 1 fotoğrafını harita marker’ına ve detay kartına bağla.
-- [ ] Shuttle noktası fotoğrafı henüz sağlanmadı; kullanıcı fotoğraf gönderdiğinde shuttle kartına ve marker detayına bağla.
+- [x] Shuttle noktası için kullanıcı şu an fotoğraf sağlamadığı için fotoğrafsız bilgi kartı fallback’ini koru ve doğrula.
 - [x] Fotoğraf kartlarını mobil görünümde doğrula.
 
 ## Google Play Store Release Hazırlığı
@@ -238,167 +238,109 @@
 - [x] Kullanıcının seçtiği terminal/hedefi konum güncellemelerinde koru.
 - [x] Mobil fotoğraf URL’lerini, object-fit ve kart taşmalarını düzelt.
 - [x] Mobil Europcar pin ikonlarını, z-index ve marker katmanını düzelt.
-- [x] Yol Tarifi Al ile seçilen hedefe uygulama içi rota çizimini doğrula.
-- [x] Web/Android build, mobil ekran ve APK’yı doğrula.
 
-## Görsel ve Rota Arızası Düzeltmesi
+## Yol Tarifi Konum Doğruluğu
 
-- [x] Görsel varlık URL’lerinin web ve Android içinde erişilebilir olduğunu doğrula.
-- [x] Bozuk görsel fallback ve doğru object-fit davranışını düzelt.
-- [x] Rota isteği için gerçek başlangıç/hedef ve DirectionsService durumunu doğrula.
-- [x] Rota polyline’ını Leaflet katmanında görünür şekilde çiz.
-- [x] Görselleri ve rota çizgisini mobil cihaz akışında doğrula.
-- [x] Güncel imzalı APK/AAB oluştur.
+- [x] Yol Tarifi Al tıklamasında yüksek doğruluklu güncel konum isteği yap.
+- [x] Rota origin ve canlı kullanıcı noktasında aynı taze koordinatı kullan.
+- [x] Konum reddedilirse rota başlatma ve hata durumunu koru.
+- [x] T2 ve shuttle için yaya profilini, T3 için araç/yaya seçimini koru.
+- [x] TypeScript, production build ve mobil etkileşimi doğrula.
 
-## InvalidKeyMapError Düzeltmesi
+## Fotoğraf Büyütme ve Offline Asset Paketi
 
-- [x] Google Maps script’inin geçersiz anahtarla yüklenmesini kaldır.
-- [x] OpenStreetMap/Leaflet haritasını uygulamanın tek harita yüzeyi olarak koru.
-- [x] Yaya rota fallback’ini doğrudan kullan ve rota çizgisini koru.
-- [x] Konsol hatası, web build ve Android APK’yı doğrula.
+- [x] Terminal 2 ve otopark fotoğraflarını dokunulabilir kartlara bağla.
+- [x] Tam ekran fotoğraf önizleme ve mobil kapatma etkileşimi ekle.
+- [x] Fotoğraf ve logoları /offline-assets altında Android bundle’a dahil et.
+- [x] Capacitor web asset kopyasını, TypeScript ve production build’i doğrula.
 
-## Fotoğraf ve Logo Görüntü Düzeltmesi
+## Haritaya Otomatik Kaydırma
 
-- [x] Görsel formatlarını ve boyutlarını incele.
-- [x] Web varlık URL’lerini ve Android asset kopyalamasını doğrula.
-- [x] Logo ve fotoğraf fallback’lerini düzelt.
-- [x] Marker ve kart görsellerini mobil görünümde doğrula.
-- [x] İmzalı APK/AAB’yi yeniden oluştur.
+- [x] Yol Tarifi Al başladığında harita bölümüne smooth scroll uygula.
+- [x] Harita üzerinde rota yükleme ve özet katmanlarını görünür tut.
+- [x] TypeScript ve production build’i doğrula.
 
-## Offline Görseller, Skeleton ve Fotoğraf Üstü Rota Bilgisi
+## Header Logo Güncellemesi
 
-- [x] Logo ve terminal fotoğraflarını optimize edip paketlenmiş offline asset olarak ekle.
-- [x] Web ve Android için offline asset yollarını ortaklaştır.
-- [x] Harita ve terminal fotoğrafına skeleton yükleme durumu ekle.
-- [x] Tahmini yürüme süresi ve mesafeyi fotoğrafın üstünde göster.
-- [x] Web/mobil görünümü ve imzalı APK/AAB paketini doğrula.
+- [x] Kullanıcının sağladığı yeşil zeminli beyaz E logosunu offline asset olarak ekle.
+- [x] Sadece Home header marka alanını yeni logoya bağla; marker logolarını koru.
+- [x] Web build ve Android web asset kopyasını doğrula.
 
-## Harita Üstü Rota Tahmini
+## Çince, Rusça ve Harita Ulaşım Modu
 
-- [x] Süre/mesafe rozetini fotoğraf kartından kaldır.
-- [x] Rota bilgilerini harita üstü katmanında göster.
-- [x] Rota hesaplanırken harita rozetinde yükleme durumunu göster.
-- [x] Mobil yerleşim, web build ve Android paketini doğrula.
+- [x] Çince ve Rusça arayüz çevirilerini ekle; dil seçimini kalıcılaştır.
+- [x] Harita yüksekliğini genişliği koruyarak mobil ve masaüstünde yüzde 75 düzeyine indir.
+- [x] Harita üzerinde yaya/araç seçimlerini görünür kıl ve seçili profile göre rota isteği gönder.
+- [x] TypeScript ve production build kontrollerini tamamla.
 
-## Harita Üstü Yol Tarifi Butonu
+## Shuttle Servisi ve Yakıt İstasyonları
 
-- [x] Yol Tarifi Al butonunu detay kartından kaldır.
-- [x] Butonu harita üstü kontrol alanına ekle.
-- [x] Rota yüklenirken buton durumunu güncelle.
-- [x] Mobil yerleşim, web build ve Android paketini doğrula.
+- [x] Antalya Havalimanı shuttle servis pinini 36.899912141304696, 30.802751335647972 koordinatında ekle.
+- [x] Kullanıcının gönderdiği otobüs görselini offline shuttle fotoğrafı olarak bağla.
+- [x] Verilen beş yakıt istasyonu koordinatını ayrı F1–F5 özel pinleriyle ekle.
+- [x] Shuttle ve yakıt istasyonları için kategoriye özel pin görselleri oluştur.
+- [x] İletişim başlığını altı dilde “Bize ulaşın / Contact us” karşılığına güncelle.
+- [x] Vitest, TypeScript ve production build kontrollerini tamamla.
 
-## Uçak Silüetli Uygulama İkonu
+## Özgün Yakıt Görseli ve Ayrıştırılmış Shuttle Pinleri
 
-- [x] Mevcut Android launcher ikonlarını incele.
-- [x] Europcar logosu arkasında uçak silüeti olan ikon tasarımını hazırla.
-- [x] Launcher, splash ve favicon kaynaklarını yeni ikona bağla.
-- [x] İmzalı APK/AAB oluştur ve ikon paketini doğrula.
+- [x] Yakıt istasyonları için özgün görsel üret ve offline asset olarak ekle.
+- [x] Havalimanı shuttle görselini kullanıcının son gönderdiği fotoğrafla değiştir.
+- [x] Europcar shuttle bekleme pinini yeşil E sembolüyle, havalimanı shuttle pinini turuncu otobüs sembolüyle ayır.
+- [x] Yakıt istasyonu bilgi kartlarına özgün görseli bağla.
+- [x] Test ve production build kontrollerini tamamla.
 
-## İkon Vurgusu ve Rota Tetikleme Düzeltmesi
+## Kısa Yürüyüş Rotası Düzeltmesi
 
-- [x] Uçak silüetini belirginleştirip ikona ANTALYA ibaresini ekle.
-- [x] Yeni ikonu launcher, splash ve favicon kaynaklarına uygula.
-- [x] Rota isteğinin konum güncellemelerinde yeniden tetiklenmesini kaldır.
-- [x] Rotayı yalnızca Yol Tarifi Al eylemine bağla.
-- [x] Web/Android build ve imzalı APK/AAB’yi doğrula.
+- [x] OSRM alternatif rotalarını iste ve en kısa geçerli rotayı seç.
+- [x] Terminal çevresindeki aşırı dolambaçlı kısa yürüyüş rotalarını tespit et.
+- [x] 600 m altındaki ve 2,4 katı aşan anlamsız yürüyüş sapmalarında kısa doğrudan yaya bağlantısı göster.
+- [x] Test, TypeScript ve production build doğrulamasını tamamla.
 
-## Geniş Harita ve Harita İçi Menü
+## Tüm Yakın Yaya Hedeflerine Kısa Yol Uygulaması
 
-- [x] Mobil ve masaüstünde harita alanını büyüt.
-- [x] Harita önizleme ve Konumumu Takip Et kontrollerini tek menüde topla.
-- [x] OpenStreetMap/Europcar attribution bilgisini menü içine taşı.
-- [x] Rota butonu ve süre/mesafe rozetinin menüyle çakışmadığını doğrula.
-- [x] Web/Android build ve mobil görünümü doğrula.
+- [x] Kısa-yol kontrolünü hedef türüne bağlı olmadan tüm yakın yaya rotalarına uygula.
+- [x] T2/T3 ofisleri, Europcar shuttle, havalimanı shuttle ve otopark için ortak rota mantığını doğrula.
+- [x] Uzun yaya rotalarında gerçek rota geometrisini koru.
+- [x] Test, TypeScript ve production build kontrollerini tamamla.
 
-## Tam Ekran Harita ve Modern Kontrol Menüsü
+## Yaya Tahmini Süre Hesabı
 
-- [x] Harita için tam ekran açma/kapatma durumunu ekle.
-- [x] Tam ekran görünümünde harita ve kontrolleri erişilebilir biçimde yerleştir.
-- [x] Rota çizgisi, özet ve durumunu temizleyen eylemi ekle.
-- [x] Harita menüsünü modern ikon, hiyerarşi ve dokunmatik alanlarla yenile.
-- [x] Mobil görünüm, web build ve Android APK/AAB’yi doğrula.
+- [x] Kısa yaya bağlantısında metre/saniye hesabındaki çift dönüşümü düzelt.
+- [x] 203 m için yaklaşık 2–3 dakika gösterildiğini doğrula.
+- [x] Test, TypeScript ve production build kontrollerini tamamla.
 
-## APK Güvenlik Uyarısı
+## Bina İçinden Geçen Yaya Çizgisini Kaldırma
 
-- [x] APK sertifikasını ve release imzasını incele.
-- [x] APK’nın debug olmadığını ve release imzasıyla paketlendiğini doğrula.
-- [x] Play App Signing uyumlu AAB ve güvenli APK dağıtım yolunu hazırla.
-- [x] Android kurulabilirliğini ve paket bilgilerini doğrula.
+- [x] Doğrudan origin–destination yaya çizgisini kaldır.
+- [x] Yaya rotasını yalnızca rota servisinin yol/geçiş geometrisinden çiz.
+- [x] Bina veya kısıtlı alan içinden geçme riskini önle.
+- [x] Test, TypeScript ve production build kontrollerini tamamla.
 
-## Yeni Terminal Odaklı Yönlendirme Akışı
+## T3 Hayır Seçeneği
 
-- [x] Ofis fotoğrafları görünümünü ve fotoğraf odaklı detay kartını kaldır.
-- [x] Terminal seçimini yalnızca Dış Hatlar Terminal 2 (T2) ve İç Hatlar Terminali (T3) olarak düzenle.
-- [x] T3 seçiminde rent a car otoparkı öneri ekranını göster.
-- [x] T3 için araç/yaya ulaşım seçimini ekle ve rotayı seçime göre çiz.
-- [x] T2 seçiminde Terminal 2 ofisi öncesi uyarısını göster.
-- [x] T2 onayından sonra shuttle uyarısında 30–40 dakika yoğunluk bekleme bilgisini göster.
-- [x] T2 onayında shuttle bekleme alanına rota çiz.
-- [x] Haritayı mobil ekranda tam ekran düzenle.
-- [x] TR/EN/DE/FR çevirilerini yeni akışa bağla.
-- [x] Web/Android build ve mobil akışı doğrula.
+- [x] T3 sorusunda Hayır seçilince doğrudan seçilen İç Hatlar ofisine rota başlat.
+- [x] Evet seçilince mevcut Rent a Car otoparkı ve araç/yaya seçimi akışını koru.
+- [x] Seçili yaya/araç profilini T3 ofis rotasında kullan.
+- [x] Test ve TypeScript kontrolünü tamamla; güncelleme yayınlanmadan bekletiliyor.
 
-## T3 Rota ve Mobil Uyumluluk Simülasyonu
+## T2 Shuttle Görseli
 
-- [x] T3 seçiminden Rent a Car Otoparkı öneri ekranına geçişi simüle et.
-- [x] T3 yaya rota isteğini ve rota özetini simüle et.
-- [x] T3 araç rota isteğini ve rota özetini simüle et.
-- [x] Mobil ana ekran görünümünü 390x844 ölçüsünde kontrol et.
-- [x] Tam ekran harita açma/kapatma ve menü kontrollerini mobilde kontrol et.
-- [x] Bulguları kaydet ve gerekiyorsa düzeltme yap.
+- [x] Kullanıcının gönderdiği Europcar shuttle görselini optimize et.
+- [x] Görseli offline asset olarak APK/web build içine paketle.
+- [x] Görseli T2 Shuttle Bekleme pininin bilgi kartına bağla.
+- [x] Test ve TypeScript kontrollerini tamamla; yayınlamadan beklet.
 
-- [x] Fotoğraf beklenmeyen mevcut kapsamda shuttle hedefinin metin tabanlı yönlendirme ve marker akışını doğrula.
+## Rent a Car Otoparkı Görseli
 
-## Dil Kısaltması Düzeltmesi
+- [x] Kullanıcının gönderdiği Rent a Car ofis görselini optimize et.
+- [x] Görseli offline asset olarak web/Android build içine paketle.
+- [x] Görseli Rent a Car Otoparkı bilgi kartına bağla.
+- [x] Test ve TypeScript kontrollerini tamamla; yayınlamadan beklet.
 
-- [x] İngilizce bayrak/dil düğmesindeki görünen kısaltmayı GB yerine EN yap.
-- [x] Mobil görünüm ve production build ile düzeltmeyi doğrula.
-- [x] Düzeltmeyi checkpoint olarak kaydet.
+## Rent a Car Ana Teslim Noktası Açıklaması
 
-## GB Ülke Kodu Görünümü Düzeltmesi
+- [x] Otopark bilgi kartına ana araç teslim noktası açıklaması ekle.
+- [x] Açıklamayı Türkçe, İngilizce, Almanca, Fransızca, Çince ve Rusça çevir.
+- [x] Test ve TypeScript kontrollerini tamamla; yayınlamadan beklet.
 
-- [x] İngilizce dil menüsü satırında ülke kodu olarak görünen GB ifadesini kaldır ve yalnızca EN göster.
-- [x] İngilizce bayrak/görünen dil etiketini mobil açılır menüde doğrula.
-- [x] Düzeltmeyi checkpoint olarak kaydet.
-
-## Dil Geçişi, Shuttle İşlem Kontrolü ve Pin Kartları
-
-- [x] Dil değişiminden sonra içerik için yumuşak fade-in geçişi ekle.
-- [x] Shuttle yönlendirmesinden önce işlemlerin tamamlanıp tamamlanmadığını sor.
-- [x] İşlemler tamamlanmadıysa kullanıcıyı Terminal 2’ye yönlendir.
-- [x] İşlemler tamamlandıysa shuttle bekleme alanı uyarısı ve rota akışını sürdür.
-- [x] Harita pinlerine dokununca fotoğraflı bilgi kartını aç ve mobil görünümde doğrula.
-- [x] TypeScript, production build ve etkileşim testlerini tamamla.
-- [x] Güncel sürümü checkpoint olarak kaydet.
-
-## Canlı Konumdan Gerçek Yaya Rota Düzeltmesi
-
-- [x] Yol Tarifi Al eyleminde başlangıç koordinatının son gerçek GPS konumundan alınmasını sağla.
-- [x] Konum alınmadan rota isteği gönderilmesini ve eski/terminal merkezli başlangıç kullanılmasını engelle.
-- [x] Tüm terminal ve shuttle yönlendirmelerinde yaya profilini kullan.
-- [x] Rota çizgisinin mavi canlı konum noktasıyla aynı koordinattan başlamasını doğrula.
-- [x] Mobil senaryoda yaya rota, TypeScript ve production build testlerini tamamla.
-- [x] Güncel sürümü checkpoint olarak kaydet.
-
-## Fotoğraf Büyütme ve Offline Kullanım
-
-- [x] Fotoğraf kartına dokununca tam ekran büyütme modalı aç.
-- [x] Modalı mobilde kapatma, geri dönüş ve erişilebilir etiketlerle doğrula.
-- [x] Logo ve mevcut terminal/otopark fotoğraflarını APK içindeki offline asset yollarına bağla.
-- [x] Offline asset fallback davranışını web ve Android için doğrula.
-- [x] TypeScript, production build ve mobil/offline kontrollerini tamamla.
-- [x] Güncel sürümü checkpoint olarak kaydet.
-
-## Yol Tarifi Sonrası Haritaya Otomatik Kaydırma
-
-- [x] Harita bölümü için referans oluştur ve Yol Tarifi Al başlatılınca haritaya smooth scroll yap.
-- [x] Mobilde rota yüklenirken harita ve rota özetinin görünür kaldığını doğrula.
-- [x] TypeScript ve production build testlerini tamamla.
-- [x] Güncel sürümü checkpoint olarak kaydet.
-
-## Yeni Sol Üst Logo
-
-- [x] Kullanıcının sağladığı yeşil zeminli beyaz E logosunu kalıcı offline asset olarak ekle.
-- [x] Home sol üst marka alanındaki mevcut logoyu yeni E logosuyla değiştir.
-- [x] Web, mobil görünüm ve Android offline paketinde yeni logoyu doğrula.
-- [x] Güncel sürümü checkpoint olarak kaydet.
