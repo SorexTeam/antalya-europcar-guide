@@ -233,3 +233,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (prefers-reduced-motion: reduce) {
   .route-loading-spinner, .route-map-ready, .route-ready-pulse, .map-skeleton::after, .photo-skeleton__shine { animation: none; }
 }
+.europcar-place-marker { background: transparent; border: 0; }
+.europcar-place-pin { display: grid; place-items: center; width: 46px; height: 54px; border: 3px solid #FFFFFE; border-radius: 50% 50% 50% 8px; transform: rotate(-45deg); box-shadow: 0 8px 18px rgba(0,0,0,.28); color: #FFFFFE; }
+.europcar-place-pin > span, .europcar-place-pin > b { transform: rotate(45deg); }
+.europcar-place-pin > span { font-size: 21px; line-height: 1; }
+.europcar-place-pin > b { margin-top: 2px; font-size: 8px; font-weight: 900; letter-spacing: .05em; }
+.europcar-place-pin--europcar { background: #009900; }
+.europcar-place-pin--airport { background: #f97316; }
+.europcar-place-pin--fuel { background: #1769aa; }
+

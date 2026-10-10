@@ -22,13 +22,15 @@ function Router() {
   );
 }
 
-type AppLanguage = "tr" | "en" | "de" | "fr";
+type AppLanguage = "tr" | "en" | "de" | "fr" | "zh" | "ru";
 
 const welcomeCopy: Record<AppLanguage, { native: string; title: string; subtitle: string; continue: string; slogan: string }> = {
   tr: { native: "Türkçe", title: "Dilini seç", subtitle: "Europcar Antalya Havalimanı rehberini nasıl kullanmak istersin?", continue: "Devam et", slogan: "Kendi yolunu keşfet" },
   en: { native: "English", title: "Choose your language", subtitle: "How would you like to use the Europcar Antalya Airport guide?", continue: "Continue", slogan: "Moving your way" },
   de: { native: "Deutsch", title: "Sprache auswählen", subtitle: "Wie möchtest du den Europcar Antalya Flughafenführer nutzen?", continue: "Weiter", slogan: "Unterwegs auf Ihre Weise" },
   fr: { native: "Français", title: "Choisissez votre langue", subtitle: "Comment souhaitez-vous utiliser le guide Europcar de l’aéroport d’Antalya ?", continue: "Continuer", slogan: "En route, à votre façon" },
+  zh: { native: "简体中文", title: "选择语言", subtitle: "您希望如何使用安塔利亚机场 Europcar 指南？", continue: "继续", slogan: "一路随行" },
+  ru: { native: "Русский", title: "Выберите язык", subtitle: "Как вы хотите использовать гид Europcar по аэропорту Антальи?", continue: "Продолжить", slogan: "В своём направлении" },
 };
 
 function SplashScreen({ onComplete }: { onComplete: () => void }) {
@@ -68,7 +70,7 @@ function SplashScreen({ onComplete }: { onComplete: () => void }) {
 function LanguageWelcome({ onSelect }: { onSelect: (language: AppLanguage) => void }) {
   const [selected, setSelected] = useState<AppLanguage>("tr");
   const copy = welcomeCopy[selected];
-  const languages: AppLanguage[] = ["tr", "en", "de", "fr"];
+  const languages: AppLanguage[] = ["tr", "en", "de", "fr", "zh", "ru"];
   return <div className="language-welcome" role="dialog" aria-modal="true" aria-labelledby="language-welcome-title"><div className="language-welcome__card"><div className="language-welcome__mark"><img src={ASSETS.logo} alt="Europcar" /></div><p className="language-welcome__eyebrow">EUROPCAR · ANTALYA AIRPORT</p><h1 id="language-welcome-title">{copy.title}</h1><p className="language-welcome__subtitle">{copy.subtitle}</p><div className="language-welcome__options">{languages.map((language) => <button key={language} type="button" onClick={() => setSelected(language)} className={`language-welcome__option ${selected === language ? "is-selected" : ""}`}><span className="language-welcome__flag">{language === "tr" ? "TR" : language === "en" ? "EN" : language.toUpperCase()}</span><span>{welcomeCopy[language].native}</span><span className="language-welcome__check">{selected === language ? "✓" : ""}</span></button>)}</div><button type="button" className="language-welcome__continue" onClick={() => onSelect(selected)}>{copy.continue}<span>↗</span></button></div></div>;
 }
 

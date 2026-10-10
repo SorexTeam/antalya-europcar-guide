@@ -12,6 +12,7 @@ type OfficeMarker = {
   label: string;
   short: string;
   position: { lat: number; lng: number };
+  kind?: "office" | "europcar-shuttle" | "airport-shuttle" | "fuel";
 };
 
 type LeafletMapProps = {
@@ -28,14 +29,11 @@ type LeafletMapProps = {
 const BRAND_ICON = ASSETS.logo;
 const BRAND_ICON_FALLBACK = "/offline-assets/europcar-logo.png";
 
-function makeOfficeIcon(short: string) {
-  return L.divIcon({
-    className: "europcar-leaflet-marker",
-    html: `<span class="europcar-marker-shell"><img src="${BRAND_ICON}" onerror="this.onerror=null;this.src='${BRAND_ICON_FALLBACK}'" alt="" /><b>${short}</b></span>`,
-    iconSize: [56, 64],
-    iconAnchor: [28, 64],
-    popupAnchor: [0, -62],
-  });
+function makeOfficeIcon(short: string, kind: OfficeMarker["kind"] = "office") {
+  if (kind === "europcar-shuttle") return L.divIcon({ className: "europcar-place-marker", html: `<span class="europcar-place-pin europcar-place-pin--europcar"><span aria-hidden="true">E</span><b>${short}</b></span>`, iconSize: [58, 68], iconAnchor: [29, 68], popupAnchor: [0, -64] });
+  if (kind === "airport-shuttle") return L.divIcon({ className: "europcar-place-marker", html: `<span class="europcar-place-pin europcar-place-pin--airport"><span aria-hidden="true">🚌</span><b>${short}</b></span>`, iconSize: [58, 68], iconAnchor: [29, 68], popupAnchor: [0, -64] });
+  if (kind === "fuel") return L.divIcon({ className: "europcar-place-marker", html: `<span class="europcar-place-pin europcar-place-pin--fuel"><span aria-hidden="true">⛽</span><b>${short}</b></span>`, iconSize: [58, 68], iconAnchor: [29, 68], popupAnchor: [0, -64] });
+  return L.divIcon({ className: "europcar-leaflet-marker", html: `<span class="europcar-marker-shell"><img src="${BRAND_ICON}" onerror="this.onerror=null;this.src='${BRAND_ICON_FALLBACK}'" alt="" /><b>${short}</b></span>`, iconSize: [56, 64], iconAnchor: [28, 64], popupAnchor: [0, -62] });
 }
 
 const userIcon = L.divIcon({
@@ -77,10 +75,10 @@ export function LeafletMap({ offices, selectedId, userPosition, routePath, follo
       const existing = markersRef.current[office.id];
       if (existing) {
         existing.setLatLng([office.position.lat, office.position.lng]);
-        existing.setIcon(makeOfficeIcon(office.short));
+        existing.setIcon(makeOfficeIcon(office.short, office.kind));
         return;
       }
-      const marker = L.marker([office.position.lat, office.position.lng], { icon: makeOfficeIcon(office.short), title: office.label }).addTo(map);
+      const marker = L.marker([office.position.lat, office.position.lng], { icon: makeOfficeIcon(office.short, office.kind), title: office.label }).addTo(map);
       marker.bindTooltip(office.label, { direction: "top", offset: [0, -48], opacity: 0.96 });
       let longPressTimer: number | null = null;
       let longPressTriggered = false;

@@ -11,4 +11,8 @@ export const ASSETS = {
   terminal2: assetPath("terminal-2-office.webp"),
   terminal1: assetPath("terminal-1-office.webp"),
   parking: assetPath("parking-transfer.webp"),
+  rentACarOffice: assetPath("rent-a-car-office.webp"),
+  airportShuttle: assetPath("airport-shuttle.webp"),
+  europcarShuttleT2: assetPath("europcar-shuttle-t2.webp"),
+  fuelStation: assetPath("fuel-station.webp"),
 };
